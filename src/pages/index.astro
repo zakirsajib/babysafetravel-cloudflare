@@ -1,0 +1,37 @@
+---
+import Hero from "../components/Hero.astro";
+import PostCard from "../components/PostCard.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import { homePagePostsQuery } from "../lib/api";
+
+const data = await homePagePostsQuery();
+const posts = data.posts.nodes;
+
+Astro.response.headers.set('Cache-Control','max-age=600, must-revalidate');
+
+---
+
+<MainLayout title='Home Page'>
+	<main>
+		<Hero></Hero>
+    <div class="container py-5">
+		<h2>Recent Posts</h2>
+    <div class="card-container">
+		{
+			posts.map(post => {
+				return (
+					<PostCard post={post}></PostCard>
+				)
+			})
+		}
+    </div>
+    </div>
+	</main>
+</MainLayout>
+
+<style>
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>

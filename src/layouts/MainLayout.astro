@@ -1,0 +1,48 @@
+---
+import SiteNav from "../components/SiteNav.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import { navQuery } from "../lib/api";
+const { menus, generalSettings } = await navQuery();
+const primaryMenu = menus.nodes[0];
+
+const { title, description } = Astro.props;
+
+---
+
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{`${title} | ${generalSettings.title}`}</title>
+		<meta name="description" content={description}>
+
+    <link rel="stylesheet" href="/styles/bootstrap4-bubblegum.min.css" />
+    <link rel="stylesheet" href="/styles/custom.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chicle&family=Open+Sans&display=swap" rel="stylesheet">
+
+	</head>
+	<body>
+		<main>
+			<SiteNav menu={primaryMenu} generalSettings={generalSettings}></SiteNav>
+			<hr>
+    </main>
+		<slot></slot>
+		<SiteFooter></SiteFooter>
+	</body>
+</html>
+
+<style>
+	body {
+		font-family: 'Open Sans', sans-serif;
+		font-size: 18px;
+	}
+	main {
+		width:100%;
+		max-width: 1140px;
+		margin:auto;
+	}
+</style>

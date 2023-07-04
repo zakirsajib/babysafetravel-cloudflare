@@ -1,0 +1,18 @@
+img {
+  max-width: 100%;
+  height: auto;
+}
+a {
+  color: #f13e5a;
+}
+a:hover {
+  color: #ee1a3c;
+}
+hr {
+  margin-top: 0;
+  margin-bottom: 0;
+  border-top: 0;
+}
+dl, ul, ol {
+  margin-top: 1rem;
+}

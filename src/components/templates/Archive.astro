@@ -1,0 +1,22 @@
+---
+import PostCard from "../PostCard.astro";
+
+const { node } = Astro.props;
+---
+<div class="container py-5">
+ <h1>{node.name} - Archive</h1>
+ <div class="card-container">
+ {node.posts.nodes.map(post => {
+    return (
+        <PostCard post={post}></PostCard>
+    )
+})}
+</div>
+</div>
+
+<style>
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+</style>

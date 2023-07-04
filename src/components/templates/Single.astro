@@ -1,0 +1,60 @@
+---
+const { node } = Astro.props;
+---
+<div class="container py-5">
+ <h1>{node.title}</h1>
+  <div class="metaWrapper">
+    {
+       node.__typename === 'Post' ?
+       (<p class='post-details'>
+           Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time>
+       </p>):
+       null
+    }
+     { node.categories ?
+        node.categories.nodes.map(category => (<a class='btn btn-danger' href={category.uri}>{category.name}</a>)) :
+        null
+     }
+  </div>
+ <img class='featured-image'
+    src={node.featuredImage?.node?.mediaItemUrl}
+    srcset={node.featuredImage?.node?.srcSet}
+    alt={node.featuredImage?.node?.altText}
+    loading='lazy'
+    width={node.featuredImage?.node?.mediaDetails?.width}
+    height={node.featuredImage?.node?.mediaDetails?.height}
+ >
+
+ <article set:html={node.content}>
+ </article>
+</div>
+ <style is:global>
+    .wp-block-image img {
+      width: 100%;
+      height: auto;
+    }
+</style>
+<style>
+    article {
+      max-width: 950px;
+      margin: auto;
+    }
+    img.featured-image {
+        border-radius: 10px;
+    }
+    .post-details {
+        color: darkgrey;
+        font-weight: 300;
+    }
+    .metaWrapper {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 30px;
+    }
+    .metaWrapper p {
+      margin-bottom: 0;
+    }
+
+</style>
