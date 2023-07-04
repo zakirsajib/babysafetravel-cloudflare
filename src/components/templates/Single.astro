@@ -12,7 +12,7 @@ const { node } = Astro.props;
        null
     }
      { node.categories ?
-        node.categories.nodes.map(category => (<a class='btn btn-danger' href={category.uri}>{category.name}</a>)) :
+        node.categories.nodes.map(category => (<a class='btn btn-outline-danger' href={category.uri}>{category.name}</a>)) :
         null
      }
   </div>

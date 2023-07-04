@@ -18,12 +18,13 @@ const { post } = Astro.props;
     <div class="card-body">
       <div class="metaWrapper">
         { post.categories.nodes.map(category => {
-          return (<a class='btn btn-danger' href={category.uri}>{category.name}</a>)
+          return (<a class='btn btn-outline-danger' href={category.uri}>{category.name}</a>)
           })}
           <span><time datetime={post.date}>{new Date(post.date).toLocaleDateString()}</time></span>
       </div>
       <h4 class="card-title"><a class='post-link' href={post.uri} aria-label={post.title}>{post.title}</a></h4>
       <p class="card-text" set:html={post.excerpt}></p>
+      <a class='btn btn-danger' href={post.uri} aria-label={post.title}>Read More</a>
     </div>
 
 </div>
