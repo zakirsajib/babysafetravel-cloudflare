@@ -1,20 +1,28 @@
 ---
+import { getReadingTime } from "../../lib/readingtime";
 const { node } = Astro.props;
 ---
 <div class="container py-5">
+  { node.categories ?
+     node.categories.nodes.map(category => (<a class='btn btn-outline-danger' href={category.uri}>{category.name}</a>)) :
+     null
+  }
  <h1>{node.title}</h1>
   <div class="metaWrapper">
-    {
-       node.__typename === 'Post' ?
-       (<p class='post-details'>
-           Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time>
-       </p>):
-       null
-    }
-     { node.categories ?
-        node.categories.nodes.map(category => (<a class='btn btn-outline-danger' href={category.uri}>{category.name}</a>)) :
-        null
-     }
+      <div>
+      {
+         node.__typename === 'Post' ?
+         (<p class='post-details'>
+             Posted on <time datetime={node.date}>{new Date(node.date).toLocaleDateString()}</time>
+         </p>):
+         null
+      }
+      </div>
+      <div>
+        {
+           node.__typename === 'Post' ?
+           (<p class='post-details'>{getReadingTime(node.content)} min. to read</p>): null }
+      </div>
   </div>
  <img class='featured-image'
     src={node.featuredImage?.node?.mediaItemUrl}
@@ -35,6 +43,9 @@ const { node } = Astro.props;
     }
 </style>
 <style>
+    h1 {
+      margin-top: 0.5em;
+    }
     article {
       max-width: 950px;
       margin: auto;
@@ -44,6 +55,7 @@ const { node } = Astro.props;
     }
     .post-details {
         color: darkgrey;
+        font-size: 14px;
         font-weight: 300;
     }
     .metaWrapper {

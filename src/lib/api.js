@@ -1,6 +1,6 @@
 export async function navQuery(){
     const siteNavQueryRes = await fetch(import.meta.env.WORDPRESS_API_URL, {
-        method: 'post', 
+        method: 'post',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
             query: `{
@@ -32,7 +32,7 @@ export async function navQuery(){
 
 export async function homePagePostsQuery(){
     const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
-        method: 'post', 
+        method: 'post',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
             query: `{
@@ -43,6 +43,7 @@ export async function homePagePostsQuery(){
                     title
                     commentCount
                     excerpt
+                    content
                     categories {
                       nodes {
                         name
@@ -73,7 +74,7 @@ export async function homePagePostsQuery(){
 
 export async function getNodeByURI(uri){
     const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
-        method: 'post', 
+        method: 'post',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify({
             query: `query GetNodeByURI($uri: String!) {
@@ -121,6 +122,7 @@ export async function getNodeByURI(uri){
                         date
                         title
                         excerpt
+                        content
                         uri
                         categories {
                           nodes {
@@ -156,7 +158,7 @@ export async function getNodeByURI(uri){
 
 export async function getAllUris(){
   const response = await fetch(import.meta.env.WORDPRESS_API_URL, {
-      method: 'post', 
+      method: 'post',
       headers: {'Content-Type':'application/json'},
       body: JSON.stringify({
           query: `query GetAllUris {
@@ -196,4 +198,3 @@ export async function getAllUris(){
   return uris;
 
 }
-

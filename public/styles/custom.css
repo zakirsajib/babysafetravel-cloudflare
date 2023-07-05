@@ -16,3 +16,16 @@ hr {
 dl, ul, ol {
   margin-top: 1rem;
 }
+.btn-outline-danger {
+  border-width: 2px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+.btn-danger {
+  font-size: 14px;
+}
+time {
+  color: darkgrey;
+  font-weight: 300;
+  font-size: 14px;
+}
