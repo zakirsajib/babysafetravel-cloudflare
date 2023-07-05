@@ -17,6 +17,7 @@ const { title, description } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{`${title} | ${generalSettings.title}`}</title>
 		<meta name="description" content={description}>
+    <link rel="sitemap" href="/sitemap-index.xml" />
 
     <link rel="stylesheet" href="/styles/bootstrap4-bubblegum.min.css" />
     <link rel="stylesheet" href="/styles/custom.css" />
