@@ -12,9 +12,5 @@ it('robots.txt exists', () => {
   cy.request(robotsTxtUrl).then((response) => {
     // Check if the response status code is 200 (OK)
     expect(response.status).to.eq(200);
-
-    // You can also add more assertions to check the content, if needed
-    // For example:
-    // expect(response.body).to.contain('User-agent: *');
   });
 });
